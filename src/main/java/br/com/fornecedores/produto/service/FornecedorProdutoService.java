@@ -1,8 +1,7 @@
 package br.com.fornecedores.produto.service;
-import br.com.fornecedores.produto.dto.FornecedorDTO;
+import br.com.fornecedores.produto.dto.response.FornecedorResponse;
 import br.com.fornecedores.produto.dto.PrecoDTO;
 import br.com.fornecedores.produto.dto.request.FornecedorProdutoRequest;
-import br.com.fornecedores.produto.dto.response.FornecedorProdutoResponse;
 import br.com.fornecedores.produto.exceptions.NaoEncontradoException;
 import br.com.fornecedores.produto.model.Fornecedor;
 import br.com.fornecedores.produto.model.FornecedorProduto;
@@ -39,7 +38,7 @@ public class FornecedorProdutoService {
     public void save(FornecedorProdutoRequest fornecedorProdutoRequest) throws NaoEncontradoException {
         Optional<Produto> produto = produtoRepository.findByGtin(fornecedorProdutoRequest.getGtin());
         if (produto.isPresent()) {
-            for (FornecedorDTO fornecedorDTO : fornecedorProdutoRequest.getFornecedores()) {
+            for (FornecedorResponse fornecedorDTO : fornecedorProdutoRequest.getFornecedores()) {
                 Optional<Fornecedor> fornecedor = fornecedorRepository.findByCnpj(fornecedorDTO.getCnpj());
                 if (fornecedor.isPresent()) {
                     FornecedorProduto fornecedorProduto = FornecedorProduto
@@ -71,11 +70,10 @@ public class FornecedorProdutoService {
         return precoFornecedorProdutoList;
     }
 
-    public FornecedorProdutoResponse toResponseFromEntity(List<FornecedorProduto> fornecedorProdutos) {
-        FornecedorProdutoResponse fornecedorProdutoResponse = FornecedorProdutoResponse.builder().build();
-        List<FornecedorDTO> fornecedores = new ArrayList<>();
+    public List<FornecedorResponse> toResponseFromEntity(List<FornecedorProduto> fornecedorProdutos) {
+        List<FornecedorResponse> fornecedores = new ArrayList<>();
         fornecedorProdutos.forEach(fornecedorProduto -> {
-            FornecedorDTO fornecedorDTO = FornecedorDTO
+            FornecedorResponse fornecedorDTO = FornecedorResponse
                     .builder()
                     .cnpj(fornecedorProduto.getFornecedor().getCnpj())
                     .nome(fornecedorProduto.getFornecedor().getNome())
@@ -84,8 +82,7 @@ public class FornecedorProdutoService {
             fornecedores.add(fornecedorDTO);
 
         });
-        fornecedorProdutoResponse.setFornecedores(fornecedores);
-        return fornecedorProdutoResponse;
+        return fornecedores;
     }
 
     public List<PrecoDTO> toPrecosDTOsFromPrecoEntities(List<PrecoFornecedorProduto> precosFornecedorProduto) {
