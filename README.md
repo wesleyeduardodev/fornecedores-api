@@ -7,3 +7,6 @@
 - http://localhost:8081/fornecedor-api/swagger-ui/index.html
 
 
+## Ajustes
+- Subir insert data.sql ao iniciar a aplicação
+- Inerir basicAuth
