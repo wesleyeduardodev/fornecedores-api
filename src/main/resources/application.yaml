@@ -16,11 +16,6 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
-  ##flyway config
-  #flyway:
-  #  locations: "db/migration"
-   # baseline-on-migrate: false
-
 #fornecedor:
 #  api:
  #   user: admin
