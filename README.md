@@ -10,3 +10,4 @@
 ## Ajustes
 - Subir insert data.sql ao iniciar a aplicação
 - Inerir basicAuth
+- Inserir configuracao de volumes para o banco postgres
