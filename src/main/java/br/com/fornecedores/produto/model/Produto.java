@@ -12,8 +12,7 @@ import javax.persistence.*;
 public class Produto {
 
     @Id
-    @SequenceGenerator(name = "id_produto_seq", sequenceName = "pk_id_produto", allocationSize = 0)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_produto_seq")
+    @GeneratedValue
     private Long id;
 
     @Column(name = "gtin", unique = true, length = 256, nullable = false)

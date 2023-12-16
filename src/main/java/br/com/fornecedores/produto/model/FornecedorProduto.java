@@ -3,18 +3,17 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
-@Table(name = "fornecedor_produto")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "fornecedor_produto")
 public class FornecedorProduto {
 
     @Id
-    @SequenceGenerator(name = "id_fornecedor_produto_seq", sequenceName = "pk_id_fornecedor_produto", allocationSize = 0)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_fornecedor_produto_seq")
+    @GeneratedValue
     private Long id;
 
     @OneToOne
@@ -25,6 +24,6 @@ public class FornecedorProduto {
     @JoinColumn(name = "id_fornecedor", nullable = false)
     private Fornecedor fornecedor;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "fornecedorProduto", cascade = CascadeType.ALL)
     private List<PrecoFornecedorProduto> precosFornecedorProduto;
 }

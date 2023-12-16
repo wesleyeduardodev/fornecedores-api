@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: "fornecedor-api"
+    name: "fornecedores-api"
 
   config:
     activate:
@@ -11,19 +11,21 @@ spring:
         - test
 
   datasource:
-    url: jdbc:postgresql://postgres-db:5432/fornecedores?currentSchema=public
-    username: "postgres"
-    password: "root"
-    driver-class-name: "org.postgresql.Driver"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: user
+    url: jdbc:mysql://mysql-db:3306/fornecedores?currentSchema=public
+    password: root
 
   jpa:
     hibernate:
       ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+    defer-datasource-initialization: true
+
+  sql:
+    init:
+      mode: always
 
 springdoc:
   swagger-ui:
     operations-sorter: method
-    path: "/fornecedor-api/swagger-ui.html"
+    path: "/fornecedores-api/swagger-ui.html"

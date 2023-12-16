@@ -3,18 +3,17 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Entity
-@Table(name = "preco_fornecedor_produto")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "preco_fornecedor_produto")
 public class PrecoFornecedorProduto {
 
     @Id
-    @SequenceGenerator(name = "id_preco_fornecedor_produto_seq", sequenceName = "pk_id_preco_fornecedor_produto", allocationSize = 0)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_preco_fornecedor_produto_seq")
+    @GeneratedValue
     private Long id;
 
     @Column(name = "quantidade_minima", nullable = false)
@@ -24,6 +23,6 @@ public class PrecoFornecedorProduto {
     private BigDecimal preco;
 
     @ManyToOne
-    @JoinColumn(name = "id_fornecedor_produto", referencedColumnName = "id")
+    @JoinColumn(name = "id_fornecedor_produto", nullable = false)
     private FornecedorProduto fornecedorProduto;
 }

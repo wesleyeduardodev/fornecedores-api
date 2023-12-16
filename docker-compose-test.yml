@@ -1,36 +1,36 @@
 version: '3'
 
 services:
-  postgres-db:
-    container_name: postgres-db
-    image: postgres:15
+  mysql-db:
+    container_name: mysql-db
+    image: mysql:latest
     environment:
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "root"
-      POSTGRES_DB: "fornecedores"
-      TZ: "America/Sao_Paulo"
+      MYSQL_DATABASE: 'fornecedores'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_ROOT_PASSWORD: 'root'
     ports:
-      - "5432:5432"
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - '3306:3306'
+    expose:
+      - '3306'
     networks:
       - docker-network
     restart: always
 
-  fornecedor-api:
+  fornecedores-api:
     build:
       context: ./
       dockerfile: Dockerfile
-    container_name: fornecedor-api
-    image: wesleyeduardodev/fornecedor-api:latest
+    container_name: fornecedores-api
+    image: wesleyeduardodev/fornecedores-api:latest
     environment:
-      SERVER_PORT: 3000
+      SERVER_PORT: 8080
       SPRING_PROFILES_ACTIVE: test
       TZ: "America/Sao_Paulo"
     ports:
-      - "80:3000"
+      - "8080:8080"
     depends_on:
-      - postgres-db
+      - mysql-db
     networks:
       - docker-network
     restart: always
