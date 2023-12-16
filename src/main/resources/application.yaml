@@ -2,15 +2,19 @@ server:
   port: 8081
 
 spring:
+
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
     username: user
     url: jdbc:mysql://localhost:3306/fornecedores
     password: root
+
   jpa:
     hibernate:
       ddl-auto: update
     defer-datasource-initialization: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
 
   sql:
     init:
@@ -18,8 +22,8 @@ spring:
 
 
   #fornecedor:
-#  api:
- #   user: admin
+  #  api:
+  #   user: admin
   #  password: admin
 
 springdoc:
