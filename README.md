@@ -20,7 +20,7 @@
 
 ## Comandos Docker que podem ser utéis
 
-- Gerar Imagem: docker build -t wesleyeduardodev/fornecedor-api .
+- Gerar Imagem: docker build -t wesleyeduardodev/fornecedores-api:latest .
 - Remover todos os containers: docker rm $(docker ps -a -q) -f
 - Remover todos as imagens: docker rmi $(docker images -q) -f
 - Remover todos os volumes: docker volume rm $(docker volume ls -qf dangling=true)
