@@ -13,7 +13,7 @@
 ## Executar aplicação
 - Abrir um terminal na pasta raiz do projeto
 - Entrar na raiz do projeto e executar "mvn clean install" para gerar o target do projeto
-- Ainda com o terminal na raiz do projeto, executar o comando "docker compose -f docker-compose-test.yml up -d" (Criar as imagens e subir todos os containers)
+- Ainda com o terminal na raiz do projeto, executar o comando "docker compose -f docker-compose-dev.yml up -d" (Criar as imagens e subir todos os containers)
 
 ## Swagger
 - http://localhost:81/fornecedores-api/swagger-ui/index.html
