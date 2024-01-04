@@ -16,6 +16,7 @@ services:
     networks:
       - docker-network
     restart: always
+  #MYSQL_TCP_PORT: 3308
 
   fornecedores-api:
     build:
